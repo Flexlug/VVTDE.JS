@@ -1,36 +1,35 @@
-const { response } = require("express");
-const express = require("express")
-const expressHbs = require("express-handlebars");
-const hbs = require("hbs");
+const express = require('express')
+const app = express()
+const handlebars = require('express-handlebars')
 
-const app = express();
+const host = '127.0.0.1'
+const port = 7000
 
-app.engine("hbs", expressHbs.engine(
-    {
-        layoutsDir: "views/layouts",
-        extname: "hbs",
-        defaultLayout: "video.hbs"
-    }
-));
+app.engine(
+  'handlebars',
+  handlebars.engine({ defaultLayout: 'main' })
+)
 
-app.set("view engine", "hbs");
+app.set('views', './views')
+app.set('view engine', 'handlebars')
 
-app.use("/video/:imageUrl/:videoUrl", (request, response) => {
+app.get("/", (request, respose) => {
+    console.log(`Got request main: ${request.url}`);
+    respose.render("main.hbs")
+})
+
+app.get("/video/:imageUrl/:videoUrl", (request, response) => {
     console.log(`Got request video: ${request.url}`);
 
     let imageDecodedUrl = decodeURIComponent(request.params["imageUrl"]);
     let videoDecodedUrl = decodeURIComponent(request.params["videoUrl"]);
 
-    response.render("video", {
+    response.render("video.hbs", {
         imageUrl: imageDecodedUrl,
         videoUrl: videoDecodedUrl
     });
 });
 
-app.use("/", (request, respose) => {
-    console.log(`Got request main: ${request.url}`);
-    respose.render("main.hbs")
-})
 
 app.listen(80, () => {
     console.log("Server is running")
