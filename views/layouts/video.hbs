@@ -18,14 +18,15 @@
     <meta property="og:video:type" content="video/mp4"/>
     <meta property="og:title" content="VK Video"/>
     <meta property="og:description" content="VK Video description"/>
-    <!--
+    
     <meta property="og:image" content="{{imageUrl}}">
     <meta property="og:image:width" content="400">
     <meta property="og:image:height" content="300">
+    
     <meta property="og:video:width" content="400">
     <meta property="og:video:height" content="300">
-    -->
     <meta http-equiv="refresh" content="0; url="/>
+    <link rel="alternate" href="${base}/oembed.json?desc=${encodeURIComponent(data.desc.length > 152 ? `${data.desc.substring(151)}...` : data.desc)}&title=${encodeURIComponent(@${data.author}`,)}&url=${encodeURIComponent(`https://tiktok.com/@${data.author}/video/${data.id}`)}" type="application/json+oembed" title="VVTDE"/>
 </head>
 <body>
     <iframe src="{{videoUrl}}" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0" allowfullscreen></iframe>
