@@ -9,9 +9,15 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.vvtde-js.tls: true
-      #traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
-      traefik.http.routers.vvtde-js-http.entrypoints: web
-      #traefik.http.routers.vvtde-js-http.middlewares: redirect-to-https
-      traefik.http.routers.vvtde-js-http.rule: Host(`flexlug.ru`) && PathPrefix(`/apis/vvtde`)
-      traefik.http.routers.vvtde-js.rule: Host(`flexlug.ru`) && PathPrefix(`/apis/vvtde`)
+      traefik.http.routers.vvtde-js.tls.certresolver: lets-encr
+#      traefik.http.routers.vvtde-js-http.entrypoints: web
+#      traefik.http.routers.vvtde-js-http.middlewares: redirect-to-https, vvtde-js-redirectregex, vvtde-js-replacepathregex
+#      traefik.http.routers.vvtde-js-http.rule: Host(`flexlug.ru`) && PathPrefix(`/vvtde`)
+      traefik.http.routers.vvtde-js.middlewares: vvtde-js-redirectregex, vvtde-js-replacepathregex
+      traefik.http.routers.vvtde-js.rule: Host(`api.flexlug.ru`) && PathPrefix(`/vvtde`)
       traefik.http.routers.vvtde-js.entrypoints: websecure
+#      traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https
+      traefik.http.middlewares.vvtde-js-replacepathregex.replacepathregex.regex: ^/vvtde/(.*)
+      traefik.http.middlewares.vvtde-js-replacepathregex.replacepathregex.replacement: /$$1
+      traefik.http.middlewares.vvtde-js-redirectregex.redirectregex.regex: ^(.*)/vvtde$$
+      traefik.http.middlewares.vvtde-js-redirectregex.redirectregex.replacement: $$1/vvtde/"
