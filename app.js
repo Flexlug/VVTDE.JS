@@ -2,9 +2,6 @@ const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
 
-const host = '127.0.0.1'
-const port = 7000
-
 app.engine(
   'handlebars',
   handlebars.engine({ defaultLayout: 'main' })
