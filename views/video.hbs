@@ -25,7 +25,9 @@
     
     <meta property="og:video:width" content="400">
     <meta property="og:video:height" content="300">
-    <!--<link rel="alternate" href="${base}/oembed.json?desc=${encodeURIComponent(data.desc.length > 152 ? `${data.desc.substring(151)}...` : data.desc)}&title=${encodeURIComponent(@${data.author}`,)}&url=${encodeURIComponent(`https://tiktok.com/@${data.author}/video/${data.id}`)}" type="application/json+oembed" title="VVTDE"/>-->
+    <link rel="alternate" type="application/json+oembed"
+        href="https://api.flexlug.ru/vvtde/oembed/{{rawVideoUrl}}"
+        title="VVTDE.JS" />
 </head>
 <body>
     <iframe src="{{videoUrl}}" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" frameborder="0" allowfullscreen></iframe>
