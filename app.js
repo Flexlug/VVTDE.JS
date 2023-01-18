@@ -15,14 +15,42 @@ app.get("/", (request, respose) => {
     respose.render("main.hbs")
 })
 
-app.get("/video/:imageUrl/:videoUrl", (request, response) => {
+app.get("/video-oe/:imageUrl/:videoUrl", (request, response) => {
     console.log(`Got request video: ${request.url}`);
 
     let imageDecodedUrl = request.params["imageUrl"];
     let videoDecodedUrl = request.params["videoUrl"];
     let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
     
-    response.render("video.hbs", {
+    response.render("video-oe.hbs", {
+        imageUrl: imageDecodedUrl,
+        videoUrl: videoDecodedUrl,
+        rawVideoUrl: rawvideoUrl
+    });
+});
+
+app.get("/video-og/:imageUrl/:videoUrl", (request, response) => {
+    console.log(`Got request video: ${request.url}`);
+
+    let imageDecodedUrl = request.params["imageUrl"];
+    let videoDecodedUrl = request.params["videoUrl"];
+    let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
+    
+    response.render("video-og.hbs", {
+        imageUrl: imageDecodedUrl,
+        videoUrl: videoDecodedUrl,
+        rawVideoUrl: rawvideoUrl
+    });
+});
+
+app.get("/video-tc/:imageUrl/:videoUrl", (request, response) => {
+    console.log(`Got request video: ${request.url}`);
+
+    let imageDecodedUrl = request.params["imageUrl"];
+    let videoDecodedUrl = request.params["videoUrl"];
+    let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
+    
+    response.render("video-tc.hbs", {
         imageUrl: imageDecodedUrl,
         videoUrl: videoDecodedUrl,
         rawVideoUrl: rawvideoUrl
