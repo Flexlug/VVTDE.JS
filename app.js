@@ -57,7 +57,7 @@ app.get("/video-tc/:imageUrl/:videoUrl", (request, response) => {
     });
 });
 
-oembedHtml = `<object width="425" height="344"><iframe src="{{URL}}" width="640" height="360" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe></object>`
+oembedHtml = `<object width="800" height="450"><iframe src="{{URL}}" width="800" height="450" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe></object>`
 
 app.get("/oembed/:videoUrl", (request, response) => {
     console.log(`Got oembed request: ${request.url}`)
