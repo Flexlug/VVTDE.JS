@@ -15,20 +15,6 @@ app.get("/", (request, respose) => {
     respose.render("main.hbs")
 })
 
-app.get("/video-oe/:imageUrl/:videoUrl", (request, response) => {
-    console.log(`Got request video: ${request.url}`);
-
-    let imageDecodedUrl = request.params["imageUrl"];
-    let videoDecodedUrl = request.params["videoUrl"];
-    let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
-    
-    response.render("video-oe.hbs", {
-        imageUrl: imageDecodedUrl,
-        videoUrl: videoDecodedUrl,
-        rawVideoUrl: rawvideoUrl
-    });
-});
-
 app.get("/video-og/:imageUrl/:videoUrl", (request, response) => {
     console.log(`Got request video: ${request.url}`);
 
@@ -57,6 +43,25 @@ app.get("/video-tc/:imageUrl/:videoUrl", (request, response) => {
     });
 });
 
+app.listen(80, () => {
+    console.log("Server is running")
+});
+/*
+
+app.get("/video-oe/:imageUrl/:videoUrl", (request, response) => {
+    console.log(`Got request video: ${request.url}`);
+
+    let imageDecodedUrl = request.params["imageUrl"];
+    let videoDecodedUrl = request.params["videoUrl"];
+    let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
+    
+    response.render("video-oe.hbs", {
+        imageUrl: imageDecodedUrl,
+        videoUrl: videoDecodedUrl,
+        rawVideoUrl: rawvideoUrl
+    });
+});
+
 oembedHtml = `<object width="800" height="450"><iframe src="{{URL}}" width="800" height="450" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe></object>`
 
 app.get("/oembed/:videoUrl", (request, response) => {
@@ -77,10 +82,7 @@ app.get("/oembed/:videoUrl", (request, response) => {
 	    html: oembedHtml.replace("{{URL}}", videoDecodedUrl)
     });
 });
-
-app.listen(80, () => {
-    console.log("Server is running")
-});
+*/
 
 /*
 <iframe src="https://vk.com/video_ext.ph?oid=-17833376&id=456257480&hash=f25bae6a04de086a" width="640" height="360" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
