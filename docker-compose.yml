@@ -6,6 +6,8 @@ services:
       context: .
     image: flexlug/vvtde:latest
     restart: always
+    volumes:
+      - ./db:/usr/src/app/db
     labels:
       traefik.enable: true
       traefik.http.routers.vvtde-js.tls: true
