@@ -30,27 +30,22 @@ function createTable(db) {
   `);
 }
 
-function hasUrl(url) {
-  querry = `SELECT *
-            FROM videos
-            WHERE url = ?`;
-  
-  let result = dbConnection.get(querry, url, (err, row) => {
-    if (err) {
-      return console.error(err.message)
-    }
-    return row
+exports.hasUrl = function hasUrl(url) {
+  return new Promise((resolve, reject) => {
+    dbConnection.get(`SELECT * FROM videos WHERE url = ?`, guid, (err, row) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(row == null)
+    })
   })
-
-  return result != null
 }
 
 exports.addUrl = function addUrl(guid, url) {
-
-  if (hasUrl(url)) {
-    console.log(`This url already exists`)
-    return
-  }
+  asUrl(url)
+    .then((x) => {
+      
+    })
 
   console.log(`Attempt to add video: ${url}, ${guid}`)
 
@@ -60,19 +55,14 @@ exports.addUrl = function addUrl(guid, url) {
 }
 
 exports.getUrl = function getUrl(guid) {
-  console.log(`Attempt to get video: ${guid}`)
-  querry = `SELECT *
-            FROM videos
-            WHERE guid = ?`
-
-  let result = dbConnection.get(querry, guid, (err, row) => {
-    if (err) {
-      return console.error(err.message)
-    }
-    return row
+  return new Promise((resolve, reject) => {
+    dbConnection.get(`SELECT * FROM videos WHERE guid = ?`, guid, (err, row) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(row)
+    })
   })
-
-  return result
 }
 
 this.createDbConnection()

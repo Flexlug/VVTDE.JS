@@ -23,6 +23,7 @@ app.get("/video/:guid", (request, response) => {
     let guid = request.params["guid"];
 
     let result = db.getUrl(guid)
+    console.log(result)
 
     if (result == null) {
         response.render("no-video.hbs")
