@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const handlebars = require('express-handlebars')
 const db = require('./db')
+const grpc = require('./grpc')
 
 app.engine(
   'handlebars',
@@ -16,18 +17,22 @@ app.get("/", (request, respose) => {
     respose.render("main.hbs")
 })
 
-app.get("/video/:imageUrl/:videoUrl", (request, response) => {
+app.get("/video/:guid", (request, response) => {
     console.log(`Got request video: ${request.url}`);
 
-    let imageDecodedUrl = request.params["imageUrl"];
-    let videoDecodedUrl = request.params["videoUrl"];
-    let rawvideoUrl = encodeURIComponent(request.params["videoUrl"]);
-    
-    response.render("video.hbs", {
-        imageUrl: imageDecodedUrl,
-        videoUrl: videoDecodedUrl,
-        rawVideoUrl: rawvideoUrl
-    });
+    let guid = request.params["guid"];
+
+    let result = db.getUrl(guid)
+
+    if (result == null) {
+        response.render("no-video.hbs")
+    } else {
+        response.render("video.hbs", {
+            imageUrl: "asd",
+            videoUrl: "asd",
+            rawVideoUrl: "ad"
+        })
+    }
 });
 
 app.listen(80, () => {

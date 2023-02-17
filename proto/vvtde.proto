@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option csharp_namespace = "Skeletron";
 
-package VVTDE;
-
 service VVTDEBridge {
   rpc RequestDownloadVideo (VideoRequest) returns (OkReply);
 }
